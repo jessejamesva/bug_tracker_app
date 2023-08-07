@@ -1,0 +1,38 @@
+[
+{
+  "model": "bug_app.project",
+  "pk": 1,
+  "fields": {
+    "name": "Wintermute",
+    "description": "Definitely not an AI trying to take over the world. Nothing to see here, just a typical group of law-abiding citizens hanging out.",
+    "project_manager": 2
+  }
+},
+{
+  "model": "bug_app.project",
+  "pk": 2,
+  "fields": {
+    "name": "Anarres",
+    "description": "A different place to be. A group project focused on the betterment of it's people and away from political and social influence of the old world. Project was created by the followers of Odo.",
+    "project_manager": 8
+  }
+},
+{
+  "model": "bug_app.project",
+  "pk": 3,
+  "fields": {
+    "name": "Descolada",
+    "description": "Emergency healthcare system, specializing in epidemic control and containment.",
+    "project_manager": 8
+  }
+},
+{
+  "model": "bug_app.project",
+  "pk": 4,
+  "fields": {
+    "name": "Rocinante",
+    "description": "Transportation company website",
+    "project_manager": 4
+  }
+}
+]
