@@ -1,30 +1,12 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+from user_app.models import Client
 
 # Create your models here.
-class User(AbstractUser):
-    roles = [
-        ("pm", "Project Manager"),
-        ("se", "Software Engineer"),
-        ("ta", "Test Analyst"),
-        ("qa", "Quality Assurance Spec."),
-        ("ro", "Read-Only")
-    ]
-    username = models.CharField(max_length=50, unique=True)
-    email = models.EmailField(max_length=100, unique=True)
-    role = models.CharField(max_length=2, choices=roles, default="ro")
-
-    USERNAME_FIELD = "username"
-    REQUIRED_FIELDS = []
-
-    def __str__(self):
-        return f"{self.username}: role - {self.role}"
-
 class Project(models.Model):
     name = models.CharField(max_length=50, unique=True)
     description = models.TextField(max_length=200, null=True)
 
-    project_manager = models.ForeignKey(User, related_name="projects", on_delete=models.CASCADE)
+    project_manager = models.ForeignKey(Client, related_name="projects", on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
@@ -54,7 +36,7 @@ class Ticket(models.Model):
     notes = models.TextField(max_length=300, null=True)
 
     sprint = models.ForeignKey(Sprint, related_name="tickets", on_delete=models.CASCADE, null=True)
-    assigned_to = models.ForeignKey(User, related_name="bugs_assigned", on_delete=models.CASCADE, null=True)
+    assigned_to = models.ForeignKey(Client, related_name="bugs_assigned", on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.id

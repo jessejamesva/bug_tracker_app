@@ -40,7 +40,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'bug_app'
+    'rest_framework',
+    'rest_framework.authtoken',
+    'bug_app',
+    'user_app'
 ]
 
 MIDDLEWARE = [
@@ -134,4 +137,4 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AUTH_USER_MODEL = 'bug_app.User'
+AUTH_USER_MODEL = 'user_app.Client'
