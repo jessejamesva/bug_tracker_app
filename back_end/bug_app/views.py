@@ -55,4 +55,11 @@ class All_projects(User_permissions):
         a_project = ProjectSerializer(new_project)
         return Response(a_project.data, status=HTTP_201_CREATED)
   
-
+class A_project(User_permissions):
+    def get(self, request, id, proj_id):
+        a_project = Project.objects.filter(company__exact = id, id__exact = proj_id)
+        if request.user.company.id == id:
+            serialized_project = ProjectSerializer(a_project, many=True)
+            return Response(serialized_project.data)
+        else:
+            return Response("User not authorized", status=HTTP_404_NOT_FOUND)
