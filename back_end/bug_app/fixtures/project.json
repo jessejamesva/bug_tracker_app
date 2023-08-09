@@ -3,36 +3,50 @@
   "model": "bug_app.project",
   "pk": 1,
   "fields": {
-    "name": "Wintermute",
-    "description": "Definitely not an AI trying to take over the world. Nothing to see here, just a typical group of law-abiding citizens hanging out.",
-    "project_manager": 2
+    "name": "Web Site Admin",
+    "description": "The U/I needs to be tweaked in accordance with spikes and code needs to be refractored to make it faster.",
+    "company": 1,
+    "project_manager": 1
   }
 },
 {
   "model": "bug_app.project",
   "pk": 2,
   "fields": {
-    "name": "Anarres",
-    "description": "A different place to be. A group project focused on the betterment of it's people and away from political and social influence of the old world. Project was created by the followers of Odo.",
-    "project_manager": 8
+    "name": "Add User Favorite Page",
+    "description": "Site navigation altered to include user favorite option and views",
+    "company": 1,
+    "project_manager": 1
   }
 },
 {
   "model": "bug_app.project",
   "pk": 3,
   "fields": {
-    "name": "Descolada",
-    "description": "Emergency healthcare system, specializing in epidemic control and containment.",
-    "project_manager": 8
+    "name": "Alter Database",
+    "description": "Database and relationship changes need to be incorporated for other options to be included.",
+    "company": 1,
+    "project_manager": 1
   }
 },
 {
   "model": "bug_app.project",
   "pk": 4,
   "fields": {
-    "name": "Rocinante",
-    "description": "Transportation company website",
-    "project_manager": 4
+    "name": "Shipping Page",
+    "description": "Refractor shipping page to reflect new changes in user survey 245.",
+    "company": 2,
+    "project_manager": 8
+  }
+},
+{
+  "model": "bug_app.project",
+  "pk": 5,
+  "fields": {
+    "name": "Landing Page",
+    "description": "Refractor landing page to reflect new changes in user survey 195.",
+    "company": 2,
+    "project_manager": 9
   }
 }
 ]

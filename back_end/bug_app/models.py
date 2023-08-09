@@ -1,12 +1,19 @@
 from django.db import models
-from user_app.models import Client
 
 # Create your models here.
+class Company(models.Model):
+    name = models.CharField(max_length=50, unique=True)
+
+    def __str__(self):
+        return self.name
+
+
 class Project(models.Model):
     name = models.CharField(max_length=50, unique=True)
     description = models.TextField(max_length=200, null=True)
 
-    project_manager = models.ForeignKey(Client, related_name="projects", on_delete=models.CASCADE)
+    company = models.ForeignKey(Company, related_name="projects", on_delete=models.CASCADE)
+    project_manager = models.ForeignKey("user_app.Client", related_name="projects", on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.name
@@ -36,7 +43,9 @@ class Ticket(models.Model):
     notes = models.TextField(max_length=300, null=True)
 
     sprint = models.ForeignKey(Sprint, related_name="tickets", on_delete=models.CASCADE, null=True)
-    assigned_to = models.ForeignKey(Client, related_name="bugs_assigned", on_delete=models.CASCADE, null=True)
+    assigned_to = models.ForeignKey("user_app.Client", related_name="bugs_assigned", on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.id
+    
+
