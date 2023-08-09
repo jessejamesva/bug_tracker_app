@@ -1,6 +1,8 @@
 from django.db import models
 
-# Create your models here.
+# these are my models. I only have these and a client app for users. That can be found under the user_app
+# Right now, I have my models, serializers, and about half of my views created and verified. I can make the correct API calls, verified through postman, and have ensured only clients logged in and who are employees of the company can view the company information (projects, sprints, and tickets). I still need to make sure only project managers can update and delete projects and sprints. All users will be able to edit and create tickets. There are png files in the main readme that illustrate 
+
 class Company(models.Model):
     name = models.CharField(max_length=50, unique=True)
 
