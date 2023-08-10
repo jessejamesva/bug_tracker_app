@@ -13,18 +13,18 @@ class SprintSerializer(ModelSerializer):
     tickets = TicketSerializer(many=True)
 
     class Meta:
-        model: Sprint
+        model = Sprint
         fields = ["id", "name", "start_date", "end_date", "tickets"]
 
 
 class SprintOnlySerializer(ModelSerializer):
     class Meta:
-        model: Sprint
+        model = Sprint
         fields = ["id", "name", "start_date", "end_date"]
 
 
 class ProjectSerializer(ModelSerializer):
-    sprints = SprintOnlySerializer(many=True)
+    sprints = SprintSerializer(many=True)
 
     class Meta:
         model = Project
@@ -44,7 +44,7 @@ class ClientSerializers(ModelSerializer):
 
 
 class CompanySerializer(ModelSerializer):
-    projects = ProjectOnlySerializer(many=True)
+    projects = ProjectSerializer(many=True)
     employees = ClientSerializers(many=True)
 
     class Meta:
