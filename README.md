@@ -10,7 +10,7 @@ This is going to be my personal project submission for Code Platoon's Uniform Co
 The purpose of this web application will be to track software program issues during project sprints. Users will be able to submit issue tickets and program managers will assign them to developers in the group. Once tickets are assigned to a sprint, they will be visible on the sprint board and can be updated in an "assigned => in-progress => testing => completed" workflow. 
 
 ## Database Design
-![DB with SQLDraw](bug_trackerV1.png) 
+![DB with SQLDraw](bug_trackerV2.png) 
 
 This isn't the exact database, but a rough draft I am using to get started. I'm sure this will change along the way. 
 
