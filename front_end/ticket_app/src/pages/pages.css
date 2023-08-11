@@ -25,3 +25,44 @@
     margin: auto;
     align-self: center;
 }
+
+.company {
+    background-color: blue;
+    text-align: center;
+    height: 100%;
+}
+.project {
+    background-color: aqua;
+    height: 100%;
+}
+.project_team {
+    background-color: rgb(171, 188, 228);
+    height: 600px;
+}
+.sprint {
+    background-color: goldenrod;
+}
+.sprint_title {
+    background-color: chocolate;
+}
+.sprint_buttons {
+    background-color: rgb(98, 149, 180);
+}
+.task {
+    background-color: pink;
+    height: 85%;
+}
+.unassigned {
+    background-color: green;
+}
+.in_progress {
+    background-color: red;
+}
+
+.testing {
+    background-color: purple;
+}
+
+.approved {
+    background-color: yellow;
+}
