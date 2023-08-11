@@ -13,3 +13,6 @@ urlpatterns = [
     path("<int:id>/projects/<int:proj_id>/sprints/<int:sprint_id>/tickets/", All_tickets.as_view(), name="all_tickets"),
     path("<int:id>/projects/<int:proj_id>/sprints/<int:sprint_id>/tickets/<int:ticket_id>/", A_ticket.as_view(), name="a_ticket")
 ]
+
+# path (sprint) (?=company = one, project = 7)
+# path (sprint/1)

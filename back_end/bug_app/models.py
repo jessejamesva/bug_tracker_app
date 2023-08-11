@@ -1,6 +1,7 @@
 from django.db import models
 
-
+# this needs to be removed and added into it's own app, maybe it's own model page?
+# decide soon
 class Company(models.Model):
     name = models.CharField(max_length=50, unique=True)
 
@@ -45,6 +46,7 @@ class Ticket(models.Model):
     notes = models.TextField(max_length=300, null=True)
 
     sprint = models.ForeignKey(Sprint, related_name="tickets", on_delete=models.CASCADE, null=True)
+    # change related name to tickets_assigned and make sure to update serializers
     assigned_to = models.ForeignKey("user_app.Client", related_name="bugs_assigned", on_delete=models.CASCADE, null=True)
 
     def __str__(self):
