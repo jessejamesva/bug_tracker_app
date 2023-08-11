@@ -1,0 +1,27 @@
+.LoginPage {
+    background-color: #F9C095;
+    /* height: 500px; */
+    width: 300px;
+    margin: auto;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.RegisterPage{
+    background-color: #F9C095;
+    /* height: 500px; */
+    width: 300px;
+    margin: auto;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.link {
+    font-size: small;
+    text-align: end;
+}
+.carousel {
+    max-width: 800px;
+    margin: auto;
+    align-self: center;
+}
