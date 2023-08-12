@@ -1,5 +1,5 @@
 from django.db import models
-from bug_app.models import Company
+from company_app.models import Company
 from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
@@ -16,7 +16,7 @@ class Client(AbstractUser):
     name = models.CharField(max_length=50, unique=True)
     role = models.CharField(max_length=2, choices=roles, default="ro")
 
-    company = models.ForeignKey("bug_app.Company", related_name="employees", on_delete=models.CASCADE)
+    company = models.ForeignKey(Company, related_name="employees", on_delete=models.CASCADE)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
