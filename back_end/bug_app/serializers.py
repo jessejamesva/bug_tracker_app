@@ -1,6 +1,5 @@
 from rest_framework.serializers import ModelSerializer
-from .models import Company, Project, Sprint, Ticket
-from user_app.models import Client
+from .models import Project, Sprint, Ticket
 
 
 class TicketSerializer(ModelSerializer):
@@ -37,17 +36,4 @@ class ProjectOnlySerializer(ModelSerializer):
         model = Project
         fields = ["id", "name", "description", "project_manager"]
 
-class ClientSerializers(ModelSerializer):
-    class Meta:
-        model = Client
-        fields = ["id", "name", "role"]
-
-
-class CompanySerializer(ModelSerializer):
-    projects = ProjectSerializer(many=True)
-    employees = ClientSerializers(many=True)
-
-    class Meta:
-        model = Company
-        fields = ["id", "name", "projects", "employees"]
 

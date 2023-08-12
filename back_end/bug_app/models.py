@@ -1,14 +1,6 @@
 from django.db import models
-
-# this needs to be removed and added into it's own app, maybe it's own model page?
-# decide soon
-class Company(models.Model):
-    name = models.CharField(max_length=50, unique=True)
-
-    # employees = models.ManyToManyField("user_app.Client", related_name="companies", null=True)
-
-    def __str__(self):
-        return self.name
+from company_app.models import Company
+from user_app.models import Client
 
 
 class Project(models.Model):
@@ -16,7 +8,7 @@ class Project(models.Model):
     description = models.TextField(max_length=200, null=True)
 
     company = models.ForeignKey(Company, related_name="projects", on_delete=models.CASCADE)
-    project_manager = models.ForeignKey("user_app.Client", related_name="projects", on_delete=models.CASCADE, null=True)
+    project_manager = models.ForeignKey(Client, related_name="projects", on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.name
@@ -46,8 +38,7 @@ class Ticket(models.Model):
     notes = models.TextField(max_length=300, null=True)
 
     sprint = models.ForeignKey(Sprint, related_name="tickets", on_delete=models.CASCADE, null=True)
-    # change related name to tickets_assigned and make sure to update serializers
-    assigned_to = models.ForeignKey("user_app.Client", related_name="bugs_assigned", on_delete=models.CASCADE, null=True)
+    assigned_to = models.ForeignKey(Client, related_name="tickets_assigned", on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.id
