@@ -1,16 +1,18 @@
-import { useEffect, useState, createContext, useRef } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { Outlet, useNavigate, useLocation } from 'react-router-dom'
 import { api } from "./utilities"
 import './App.css'
 
-export const userContext = createContext()
+// export const userContext = createContext()
 
 export default function App() {
   const [user, setUser] = useState(null)
+  const [userId, setUserID] = useState(0)
   const navigate = useNavigate()
   const location = useLocation()
   const lastVisited = useRef()
 
+  
   const logOut = async() => {
     console.log(user)
     let response = await api.post("users/logout/")
@@ -18,42 +20,45 @@ export default function App() {
       localStorage.removeItem("token")
       delete api.defaults.headers.common["Authorization"]
       setUser(null)
+      setUserID(null)
       navigate("/")
     }
   }
-
+  
   const whoAmI = async() => {
     let token = localStorage.getItem("token")
     if (token) {
       api.defaults.headers.common["Authorization"] = `Token ${token}`
       let response = await api.get("users/")
       setUser(response.data)
+      setUserID(response.data.company)
+
       navigate("company")
     } else {
       setUser(null)
+      setUserID(null)
       navigate('/')
     }
   }
-
+  
   useEffect(() => {
     whoAmI()
   }, [])
-
+  
   useEffect(() => {
     if (!user) {
       lastVisited.current = location.pathname
     }
   }, [location])
+  
 
   return (
     <div className='App'>
-      <div>
-        <h1>{`Jesse's Jira - Welcome ${user ? user.name : ""}`}</h1>
-        {user ? (<h2>{"Welcome"}</h2> && <button onClick={logOut}>Log Out</button>) : null}        
+      <div className="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-3 dark:bg-gray-700">
+        
+          <Outlet context={{user, setUser, logOut, whoAmI, userId, setUserID}}/>        
+        
       </div>
-      <userContext.Provider value={{ user, setUser }}>
-        <Outlet />        
-      </userContext.Provider>
     </div>
   )
 }
