@@ -1,11 +1,14 @@
 import { Link } from 'react-router-dom'
 import './pages.css'
-import { Form, FloatingLabel, Button, Image } from "react-bootstrap"
+
 
 export default function RegisterPage() {
   return (
     <div className="RegisterPage">
-      <Form className='d-grid gap-1'>
+      <h1>This is the Register</h1>
+      <Link to="/">Already have an account?</Link>
+      
+      {/* <Form className='d-grid gap-1'>
         <Image src="https://picsum.photos/260" rounded className='mx-2'></Image>
         <FloatingLabel
           controlId="floatingInput"
@@ -22,7 +25,7 @@ export default function RegisterPage() {
         </FloatingLabel>        
         <Button className='my-2'size='lg'>Register</Button>
         <Link to="/" className='link'>All ready have an account?</Link>
-      </Form> 
+      </Form>  */}
     </div>      
   )
 }

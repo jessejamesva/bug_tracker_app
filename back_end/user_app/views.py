@@ -45,4 +45,10 @@ class Info(APIView):
     permission_classes = [IsAuthenticated]
     
     def get(self, request):
-        return Response({"client": request.user.email, "name": request.user.name})
+        print(request.user.company)
+        response = {
+            "client": request.user.email,
+            "name": request.user.name,
+            "company": request.user.company.id
+        }
+        return Response(response)
