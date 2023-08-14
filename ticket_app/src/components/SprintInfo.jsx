@@ -6,7 +6,7 @@ export default function SprintInfo(props) {
         <div className="mx-30">
             {sprint && <h3 className="mx-32 text-sky-500">{`Sprint: ${sprint.name}`}</h3>}
             {sprint && (sprint.tickets.map((ticket) =>
-               <TicketInfo ticket={ticket} />            
+               <TicketInfo key={ticket.id} ticket={ticket} />            
             ))}
         </div>
     )

@@ -1,12 +1,13 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { BsArrowLeftShort, BsChevronDown, BsReverseLayoutTextSidebarReverse, BsPerson, BsPeopleFill } from "react-icons/bs"
-import { AiFillEnvironment, AiOutlineBarChart, AiOutlineLogout, AiOutlineMail, AiOutlineSetting } from "react-icons/ai"
+import { BsRss,BsArrowLeftShort, BsChevronDown, BsReverseLayoutTextSidebarReverse, BsPerson, BsPeopleFill } from "react-icons/bs"
+import { AiFillEnvironment, AiOutlineBuild, AiOutlineBarChart, AiOutlineLogout, AiOutlineMail, AiOutlineSetting } from "react-icons/ai"
 import { RiDashboardFill } from "react-icons/ri"
 import { TbLayoutGridAdd, TbPlaylistAdd } from "react-icons/tb"
+import { GrVirtualMachine } from "react-icons/gr"
 
 export default function NavBar(props) {
-    const { logOut, company } = props
+    const { logOut, company, sprint, setSprint } = props
     const [open, setOpen] = useState(true)
     const [projectOpen, setProjectOpen] = useState(false)
     const [employeeOpen, setEmployeeOpen] = useState(false)
@@ -39,7 +40,7 @@ export default function NavBar(props) {
                 //     submenu: true,
                 //     submenuItems: company.projects
                 // },
-        { title: "Sprint Board", spacing: true },
+        { title: "Sprint Board", spacing: true, onClick: () => navigate("/company") },
         { title: "Add Sprint", icon: <TbPlaylistAdd />, onClick: () => navigate("add_sprint") },
         { title: "Add Ticket", icon: <TbLayoutGridAdd />, onClick: () => navigate("add_ticket") },
         { title: "Inbox", icon: <AiOutlineMail /> },
@@ -57,10 +58,10 @@ export default function NavBar(props) {
                     onClick={() => setOpen(!open)}
                 />
                 <div className="inline-flex">
-                    <AiFillEnvironment className={`bg-blue-100 text-4xl  rounded  cursor-pointer block float-left mr-2 duration-500 ${open && "rotate-[360deg]"}`}/>
+                    <AiOutlineBuild className={`bg-blue-100 text-4xl  rounded  cursor-pointer block float-left mr-2 duration-500 ${open && "rotate-[360deg]"}`}/>
                     <h1 className={`text-white origin-left font-medium text-2xl duration-300 ${!open && "scale-0"}`}>{company.name}</h1>
                 </div>
-                {selectedProject && <h2 className={`text-white ${!open && "hidden"}`}>Project Manager: {selectedProject.project_manager}</h2>}
+                {selectedProject && <h2 className={`text-white ${!open && "hidden"}`}>PM - {selectedProject.project_manager.name}</h2>}
                 <ul className="pt-2">
                     {/* *****  Projects  ***** */}
                     <>
@@ -107,7 +108,9 @@ export default function NavBar(props) {
                         {selectedProject.sprints && sprintOpen && open && (
                             <ul>
                                 {selectedProject.sprints.map((sprint) => (
-                                    <li key={sprint.id} className="text-gray-300 text-sm flex items-center gap-x-4 cursor-pointer p-2 px-5 hover:bg-light-white rounded-md">
+                                    <li key={sprint.id} 
+                                    className="text-gray-300 text-sm flex items-center gap-x-4 cursor-pointer p-2 px-5 hover:bg-light-white rounded-md"
+                                    onClick={() => setSprint(sprint)}>
                                         {sprint.name}
                                     </li>
                                 ))}

@@ -1,5 +1,6 @@
 from rest_framework.serializers import ModelSerializer
 from .models import Project, Sprint, Ticket
+from user_app.serializers import ClientSerializers
 
 
 class TicketSerializer(ModelSerializer):
@@ -24,6 +25,7 @@ class SprintOnlySerializer(ModelSerializer):
 
 class ProjectSerializer(ModelSerializer):
     sprints = SprintSerializer(many=True)
+    project_manager = ClientSerializers()
 
     class Meta:
         model = Project

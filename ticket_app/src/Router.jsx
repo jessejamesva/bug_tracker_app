@@ -6,6 +6,7 @@ import HomePage from "./pages/HomePage"
 import CompanyPage from "./pages/CompanyPage"
 import AddSprint from "./components/AddSprint"
 import AddTicket from "./components/AddTicket"
+import SprintInfo from "./components/SprintInfo"
 
 export const router = createBrowserRouter([
     {
@@ -28,6 +29,10 @@ export const router = createBrowserRouter([
                 path: "company",
                 element: <CompanyPage />,
                 children: [
+                    {
+                        index: true,
+                        element: <SprintInfo />
+                    },
                     {
                         path: "add_sprint",
                         element: <AddSprint />

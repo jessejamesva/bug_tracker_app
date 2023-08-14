@@ -7,7 +7,7 @@ import './App.css'
 
 export default function App() {
   const [user, setUser] = useState(null)
-  const [userId, setUserID] = useState(0)
+  const [companyId, setCompanyID] = useState(0)
   const navigate = useNavigate()
   const location = useLocation()
   const lastVisited = useRef()
@@ -20,7 +20,7 @@ export default function App() {
       localStorage.removeItem("token")
       delete api.defaults.headers.common["Authorization"]
       setUser(null)
-      setUserID(null)
+      setCompanyID(null)
       navigate("/")
     }
   }
@@ -31,12 +31,12 @@ export default function App() {
       api.defaults.headers.common["Authorization"] = `Token ${token}`
       let response = await api.get("users/")
       setUser(response.data)
-      setUserID(response.data.company)
+      setCompanyID(response.data.company)
 
       navigate("company")
     } else {
       setUser(null)
-      setUserID(null)
+      setCompanyID(null)
       navigate('/')
     }
   }
@@ -55,7 +55,7 @@ export default function App() {
   return (
     <div className='App'>
       <div className="min-h-screen bg-gray-100 flex flex-col justify-center dark:bg-gray-700">        
-          <Outlet context={{user, setUser, logOut, whoAmI, userId, setUserID}}/>    
+          <Outlet context={{user, setUser, logOut, whoAmI, companyId, setCompanyID}}/>    
         
       </div>
     </div>
