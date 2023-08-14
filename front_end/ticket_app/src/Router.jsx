@@ -4,6 +4,8 @@ import LoginPage from "./pages/LoginPage"
 import RegisterPage from "./pages/RegisterPage"
 import HomePage from "./pages/HomePage"
 import CompanyPage from "./pages/CompanyPage"
+import AddSprint from "./components/AddSprint"
+import AddTicket from "./components/AddTicket"
 
 export const router = createBrowserRouter([
     {
@@ -24,7 +26,18 @@ export const router = createBrowserRouter([
             },
             {
                 path: "company",
-                element: <CompanyPage />
+                element: <CompanyPage />,
+                children: [
+                    {
+                        path: "add_sprint",
+                        element: <AddSprint />
+                    },
+                    {
+                        path: "add_ticket",
+                        element: <AddTicket />
+                    }
+                  
+                ]
             }
         ]
     }

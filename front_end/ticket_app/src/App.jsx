@@ -54,9 +54,8 @@ export default function App() {
 
   return (
     <div className='App'>
-      <div className="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-3 dark:bg-gray-700">
-        
-          <Outlet context={{user, setUser, logOut, whoAmI, userId, setUserID}}/>        
+      <div className="min-h-screen bg-gray-100 flex flex-col justify-center dark:bg-gray-700">        
+          <Outlet context={{user, setUser, logOut, whoAmI, userId, setUserID}}/>    
         
       </div>
     </div>

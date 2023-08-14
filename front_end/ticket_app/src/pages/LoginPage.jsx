@@ -47,7 +47,7 @@ export default function LoginPage() {
                         <label htmlFor="password" className="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm dark:text-white">Password</label>
                       </div>
                       <div className="relative">
-                        <button className="bg-indigo-500 text-white rounded-md px-2 py-1" type="submit">Submit</button>
+                        <button className="bg-pink-900 text-white rounded-md px-2 py-1 hover:bg-pink-500" type="submit">Submit</button>
                         <Link to="register" className="text-white text-right text-xs mx-7">Register?</Link>
                       </div>
                   </div>
