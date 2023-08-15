@@ -32,7 +32,6 @@ export default function App() {
       let response = await api.get("users/")
       setUser(response.data)
       setCompanyID(response.data.company)
-
       navigate("company")
     } else {
       setUser(null)
