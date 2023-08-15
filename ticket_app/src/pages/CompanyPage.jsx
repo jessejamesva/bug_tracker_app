@@ -5,12 +5,11 @@ import "./pages.css"
 import NavBar from "../components/NavBar";
 
 
-
-
 export default function CompanyPage() {
   const {user, logOut, whoAmI, companyId} = useOutletContext()
   const [company, setCompany] = useState({})
   const [sprint, setSprint] = useState({})
+  const [isSprintLoaded, setIsSprintLoaded] = useState(false)
  
   const getCompany = async() => {
     try {
@@ -35,8 +34,15 @@ export default function CompanyPage() {
   
   return (
     <div className="flex">
-      <NavBar company={company} logOut={logOut} sprint={sprint} setSprint={setSprint}/>
-      <Outlet sprint={sprint}/>
+      <NavBar 
+        key={7}
+        company={company} 
+        logOut={logOut} 
+        sprint={sprint} 
+        setSprint={setSprint} 
+        setIsSprintLoaded={setIsSprintLoaded}
+      />
+      <Outlet key={3} context={{sprint, isSprintLoaded, company}}/>
     </div>
   )
 }

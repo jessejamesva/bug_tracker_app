@@ -7,7 +7,7 @@ import { TbLayoutGridAdd, TbPlaylistAdd } from "react-icons/tb"
 import { GrVirtualMachine } from "react-icons/gr"
 
 export default function NavBar(props) {
-    const { logOut, company, sprint, setSprint } = props
+    const { logOut, company, sprint, setSprint, setIsSprintLoaded } = props
     const [open, setOpen] = useState(true)
     const [projectOpen, setProjectOpen] = useState(false)
     const [employeeOpen, setEmployeeOpen] = useState(false)
@@ -51,7 +51,7 @@ export default function NavBar(props) {
 
     return (
         <div className="flex">
-            <div className={`bg-pink-900 min-h-screen p-5 pt-8 ${open ? "w-72" : "w-20"} duration-300 relative`}>
+            <div className={`bg-pink-900 shadow-black shadow-lg min-h-screen p-5 pt-8 ${open ? "w-72" : "w-20"} duration-300 relative`}>
                 {/* ***** Heading ***** */}
                 <BsArrowLeftShort  
                     className={`bg-white text-dark-purple text-3xl rounded-full absolute -right-3 top-9 border border-dark-purple cursor-pointer ${!open && "rotate-180"}`}
@@ -63,9 +63,11 @@ export default function NavBar(props) {
                 </div>
                 {selectedProject && <h2 className={`text-white ${!open && "hidden"}`}>PM - {selectedProject.project_manager.name}</h2>}
                 <ul className="pt-2">
-                    {/* *****  Projects  ***** */}
+
+
+                {/* *****  Projects  ***** */}
                     <>
-                        <li key="projects" className="text-gray-300 text-sm flex items-center gap-x-4 cursor-pointer p-2 duration-200  hover:bg-light-white rounded-md mt-2" onClick={() => setProjectOpen(!projectOpen)}>
+                        <li key={1} className="text-gray-300 text-sm flex items-center gap-x-4 cursor-pointer p-2 duration-200  hover:bg-light-white rounded-md mt-2" onClick={() => setProjectOpen(!projectOpen)}>
                             <span className="text-2xl block `float-left"><BsReverseLayoutTextSidebarReverse /></span>
                             <span className={`text-base font-medium flex-1 duration-200 ${!open && "hidden"}`}>Projects</span>
                             <BsChevronDown className={`${projectOpen && "rotate-180"}`}/>
@@ -81,9 +83,11 @@ export default function NavBar(props) {
                             </ul>
                             )}
                     </>
-                    {/* *****  Employees  ***** */}
+
+
+                {/* *****  Employees  ***** */}
                     <>
-                        <li key="projects" className="text-gray-300 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-light-white rounded-md mt-2" onClick={() => setEmployeeOpen(!employeeOpen)}>
+                        <li key={4} className="text-gray-300 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-light-white rounded-md mt-2" onClick={() => setEmployeeOpen(!employeeOpen)}>
                             <span className="text-2xl block `float-left"><BsPeopleFill /></span>
                             <span className={`text-base font-medium flex-1 duration-200 ${!open && "hidden"}`}>Development Team</span>
                             <BsChevronDown className={`${employeeOpen && "rotate-180"}`}/>
@@ -98,9 +102,11 @@ export default function NavBar(props) {
                             </ul>
                             )}
                     </>
-                    {/* *****  Sprints  ***** */}
+                
+                
+                {/* *****  Sprints  ***** */}
                     {selectedProject && (<>
-                        <li key="sprints" className="text-gray-300 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-light-white rounded-md mt-2" onClick={() => setSprintOpen(!sprintOpen)}>
+                        <li key={3} className="text-gray-300 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-light-white rounded-md mt-2" onClick={() => setSprintOpen(!sprintOpen)}>
                             <span className="text-2xl block `float-left"><AiOutlineBarChart /></span>
                             <span className={`text-base font-medium flex-1 duration-200 ${!open && "hidden"}`}>Sprint</span>
                             <BsChevronDown className={`${sprintOpen && "rotate-180"}`}/>
@@ -110,14 +116,19 @@ export default function NavBar(props) {
                                 {selectedProject.sprints.map((sprint) => (
                                     <li key={sprint.id} 
                                     className="text-gray-300 text-sm flex items-center gap-x-4 cursor-pointer p-2 px-5 hover:bg-light-white rounded-md"
-                                    onClick={() => setSprint(sprint)}>
+                                    onClick={() => {
+                                        setSprint(sprint) 
+                                        setIsSprintLoaded(true)
+                                        }}>
                                         {sprint.name}
                                     </li>
                                 ))}
                             </ul>
                             )}
                     </>)}
-                    {/* ******  Everything Else ****** */}
+
+
+                {/* ******  Everything Else ****** */}
                     {Menus.map((menu, index) => (
                         <>
                             <li key={index} className={`text-gray-300 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-light-white rounded-md ${menu.spacing ? "mt-9" : "mt-2"}`} 

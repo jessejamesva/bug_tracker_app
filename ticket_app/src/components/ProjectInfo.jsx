@@ -10,9 +10,9 @@ export default function ProjectInfo(props) {
       {project && <h5 className="mx-10">Project: {project.name}</h5>}
       {project && <p className="mx-20">Description: {project.description}</p>}
       {/* {project.sprint && <h6 className="mx-30">Sprint: </h6>} */}
-      {project && (project.sprints.map((sprint) => (
+      {project && (project.sprints.map((sprint, index) => (
         // <h6 className="mx-40" key={sprint.id}>{sprint.name}</h6>
-        <SprintInfo sprint={sprint} />
+        <SprintInfo key={index} sprint={sprint} />
       )))}
     </div>
   )
