@@ -1,13 +1,13 @@
-// import { useEffect, useState } from "react"
-import { useOutletContext } from "react-router-dom"
+import { useEffect, useState } from "react"
+import { useOutletContext, useNavigate } from "react-router-dom"
 import TicketInfo from "./TicketInfo"
-import { useState } from "react"
-import { useEffect } from "react"
+
 
 
 export default function SprintInfo() {
-    const { sprint, isSprintLoaded } = useOutletContext()
+    const { sprint, isSprintLoaded, company } = useOutletContext()
     const [unassignedTickets, setUnassignedTickets] = useState([])
+    const navigate = useNavigate()
  
     
     function getUnassigned() {
@@ -15,9 +15,13 @@ export default function SprintInfo() {
         // (isSprintLoaded && console.log("sprint"))
     }
     
+    // useEffect(() => {
+
+    // }, [sprint] )
+
     useEffect(() => {
         getUnassigned()
-    }, [isSprintLoaded])
+    }, [sprint, isSprintLoaded])
     
     if (!isSprintLoaded) {
         return null
@@ -35,8 +39,8 @@ export default function SprintInfo() {
             <div className="mt-4 w-full h-full flex justify-between gap-8">
                 <div className="basis-1/4 text-center bg-yellow-400">
                     <h2 className="text-2xl underline  ">Unassinged</h2>
-                    {unassignedTickets.map((ticket, index) => (
-                        <h3 key={index}>{ticket.feature}</h3>    
+                    {unassignedTickets.map((ticket) => (
+                        <h3 onClick={() => {navigate(`${company.id}/ticket/${ticket.id}`)}}key={ticket.id}>{ticket.feature}</h3>    
                     ))}
                 </div>
                 <div className="text-2xl underline basis-1/4 text-center bg-pink-400">In Progress</div>
