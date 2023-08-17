@@ -75,7 +75,10 @@ export default function NavBar(props) {
                         {company.projects && projectOpen && open && (
                             <ul>
                                 {company.projects.map((project) => (
-                                    <li key={project.id} className="text-gray-300 text-sm flex items-center gap-x-4 cursor-pointer p-2 px-5 hover:bg-light-white rounded-md group relative w-max" onClick={() => setSelectedProject(project)}>
+                                    <li 
+                                      key={project.id} 
+                                      className="text-gray-300 text-sm flex items-center gap-x-4 cursor-pointer p-2 px-5 hover:bg-light-white rounded-md group relative w-max" 
+                                      onClick={() => setSelectedProject(project)}>
                                         {project.name}
                                         <span className="bg-white text-lg text-gray-500 pointer-events-none absolute -top-4 left-full w-max opacity-0 rounded-md transition-opacity group-hover:opacity-100">{project.description}</span>
                                     </li>

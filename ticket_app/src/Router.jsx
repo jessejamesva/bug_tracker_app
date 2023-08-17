@@ -7,6 +7,7 @@ import CompanyPage from "./pages/CompanyPage"
 import AddSprint from "./components/AddSprint"
 import AddTicket from "./components/AddTicket"
 import SprintInfo from "./components/SprintInfo"
+import TicketInfo, { ticketLoader } from "./components/TicketInfo"
 
 export const router = createBrowserRouter([
     {
@@ -40,6 +41,11 @@ export const router = createBrowserRouter([
                     {
                         path: "add_ticket",
                         element: <AddTicket />
+                    },
+                    {
+                        path: ":id/ticket/:ticket_id",
+                        loader: ticketLoader,
+                        element: <TicketInfo />
                     }
                   
                 ]

@@ -94,10 +94,19 @@ class All_tickets(User_permissions):
         return Response(a_ticket.data, status=HTTP_201_CREATED)
     
 class A_ticket(User_permissions):
-    def get(self, request, id, proj_id, sprint_id, ticket_id):
-        a_ticket = Ticket.objects.filter(sprint__exact = sprint_id, id__exact = ticket_id)
+    def get(self, request, id, ticket_id):
+        a_ticket = get_object_or_404(Ticket, id = ticket_id)
         if request.user.company.id == id:
-            serialized_ticket = TicketSerializer(a_ticket, many = True)
+            serialized_ticket = TicketSerializer(a_ticket)
             return Response(serialized_ticket.data)
         else:
             return Response("User not authorized", status=HTTP_404_NOT_FOUND)
+
+
+    # def get(self, request, id, proj_id, sprint_id, ticket_id):
+    #     a_ticket = Ticket.objects.filter(sprint__exact = sprint_id, id__exact = ticket_id)
+    #     if request.user.company.id == id:
+    #         serialized_ticket = TicketSerializer(a_ticket, many = True)
+    #         return Response(serialized_ticket.data)
+    #     else:
+    #         return Response("User not authorized", status=HTTP_404_NOT_FOUND)
