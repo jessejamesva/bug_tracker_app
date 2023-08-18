@@ -17,6 +17,9 @@ export default function AddTicket() {
         notes: note
       })
       console.log(response.data)
+      if (response.status === 201) {
+        alert("Ticket Created")
+      }
       navigate("/company")
     }
 
@@ -37,6 +40,7 @@ export default function AddTicket() {
                           name="selectedProject"
                           onClick={(e) => setProject(e.target.value)} 
                           className="w-4/6 text-black mx-4 rounded pl-1">
+                            <option key={100} value={null}></option>
                           {company && company.projects.map((project, index) => (
                             <option key={index} value={project.id}>{project.name}</option>
                           ))}
@@ -50,7 +54,8 @@ export default function AddTicket() {
                         placeholder="Project" 
                         className="w-4/6 text-black mx-4 rounded mb-3 pl-1"
                       >
-                        {project && company.projects[project-1].sprints.map((sprint, index) => (
+                        <option key={100} value={null}></option>
+                        {project && company.projects[company.projects.findIndex(x => x.id === parseInt(project))].sprints.map((sprint, index) => (
                           <option key={index} value={sprint.id}>{sprint.name}</option>
                         ))}
                       </select>

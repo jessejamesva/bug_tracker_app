@@ -12,9 +12,17 @@ export const ticketLoader = async ({ params }) => {
 }
 
 // This component shows information for a single ticket with two buttons, for update and delete
-export default function TicketInfo() {
+export default function TicketInfo({ params }) {
     const ticket = useLoaderData()
-    const navigate = useNavigate()    
+    const navigate = useNavigate() 
+    
+    const handleDelete = async () => {
+        let response = await api.delete(`companies/${params.id}/ticket/${ticket.id}/`)
+        if (response.data.status === 204) {
+            alert("Ticket Deleted")
+        }
+        navigate("/company")
+    }
     
     return (
         <div className="bg-gray-600 h-1/2 w-1/3 m-auto rounded text-white">
@@ -29,7 +37,7 @@ export default function TicketInfo() {
                 </div>
                 <div className="flex mb-4 w-full justify-evenly">
                     <button onClick={() => {navigate(`update`)}} className="w-1/4 bg-pink-900 rounded p-1 hover:bg-pink-400">Update</button>
-                    <button className="w-1/4 bg-pink-900 rounded p-1 hover:bg-pink-400">Delete</button>
+                    <button onClick={handleDelete} className="w-1/4 bg-pink-900 rounded p-1 hover:bg-pink-400">Delete</button>
                 </div>
 
             </div>

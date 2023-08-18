@@ -29,7 +29,7 @@ export default function CompanyPage() {
     if (companyId && !company.name) {
       getCompany()
     }
-  }, [user])
+  }, [user, sprint])
   
   
   return (
