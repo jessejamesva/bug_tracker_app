@@ -1,19 +1,28 @@
-import { useParams, useLoaderData } from "react-router-dom"
+import { useLoaderData, useNavigate } from "react-router-dom"
 import { api } from "../utilities"
-// import axios from "axios"
 
+
+
+// ticket loader runs API call before TicketInfo
 export const ticketLoader = async ({ params }) => {
-    console.log("loader started")
     const response = await api.get(
         `companies/${params.id}/ticket/${params.ticket_id}`
     )
     return response.data
 }
 
-export default function TicketInfo() {
-    // const {id, ticket_id} = useParams()
+// This component shows information for a single ticket with two buttons, for update and delete
+export default function TicketInfo({ params }) {
     const ticket = useLoaderData()
+    const navigate = useNavigate() 
     
+    const handleDelete = async () => {
+        let response = await api.delete(`companies/${params.id}/ticket/${ticket.id}/`)
+        if (response.data.status === 204) {
+            alert("Ticket Deleted")
+        }
+        navigate("/company")
+    }
     
     return (
         <div className="bg-gray-600 h-1/2 w-1/3 m-auto rounded text-white">
@@ -25,11 +34,10 @@ export default function TicketInfo() {
                     <h1>Notes: {ticket.notes ? ticket.notes : "None"}</h1>
                     <h1>Assigned To: {ticket.assigned_to ? ticket.assigned_to : "None"}</h1>
                     <h1>Status: {ticket.status}</h1>
-                    {/* <h1>Due Date: {ticket.due_date ? ticket.due_date : "None"}</h1> */}
                 </div>
                 <div className="flex mb-4 w-full justify-evenly">
-                    <button className="w-1/4 bg-pink-900 rounded p-1 hover:bg-pink-400">Update</button>
-                    <button className="w-1/4 bg-pink-900 rounded p-1 hover:bg-pink-400">Delete</button>
+                    <button onClick={() => {navigate(`update`)}} className="w-1/4 bg-pink-900 rounded p-1 hover:bg-pink-400">Update</button>
+                    <button onClick={handleDelete} className="w-1/4 bg-pink-900 rounded p-1 hover:bg-pink-400">Delete</button>
                 </div>
 
             </div>
