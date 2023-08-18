@@ -4,7 +4,7 @@ import { api } from "../utilities"
 import "./pages.css"
 import NavBar from "../components/NavBar";
 
-
+// whoAmI is read from the Login Page and used to keep track of the user. "isSprintLoaded" will show Sprint Board once a sprint is selected. 
 export default function CompanyPage() {
   const {user, logOut, whoAmI, companyId} = useOutletContext()
   const [company, setCompany] = useState({})

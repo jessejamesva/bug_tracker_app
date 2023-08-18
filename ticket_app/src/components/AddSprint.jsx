@@ -9,7 +9,6 @@ export default function AddSprint() {
     const [startDate, setStartDate] = useState(new Date())
     const [endDate, setEndDate] = useState("")
     const [project, setProject] = useState(null)
-    // const [sprint, setSprint] = useState(null)
     const { company } = useOutletContext()
     const navigate = useNavigate()
 
@@ -74,8 +73,7 @@ export default function AddSprint() {
                       </div>
                       <div>
                         <label className="text-white">End Date: </label>
-                        <DatePicker
-                          // dateFormat="yyyy/MM/dd" 
+                        <DatePicker 
                           selected={endDate} 
                           onChange={(date) => setEndDate(date)}
                         />
@@ -86,7 +84,6 @@ export default function AddSprint() {
                           type="submit">
                             Submit
                           </button>
-                        {/* <Link to="register" className="text-white text-right text-xs mx-7">Register?</Link> */}
                       </div>
                     </div>
                 </div>
