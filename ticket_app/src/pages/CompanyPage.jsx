@@ -8,7 +8,7 @@ import NavBar from "../components/NavBar";
 export default function CompanyPage() {
   const {user, logOut, whoAmI, companyId} = useOutletContext()
   const [company, setCompany] = useState({})
-  const [sprint, setSprint] = useState({})
+  const [sprint, setSprint] = useState()
   const [isSprintLoaded, setIsSprintLoaded] = useState(false)
  
   const getCompany = async() => {

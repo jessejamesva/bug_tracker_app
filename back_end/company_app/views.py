@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.status import HTTP_201_CREATED, HTTP_404_NOT_FOUND
-from .serializers import Company, CompanySerializer 
+from .serializers import Company, CompanySerializer, CompanyOnlySerializer
 
 
 # Create your views here.
@@ -12,7 +12,12 @@ class User_permissions(APIView):
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated]
 
-
+class Company_names(APIView):
+    def get(self, request):
+        all_companies = Company.objects.all()
+        serializer_companies = CompanyOnlySerializer(all_companies, many=True)
+        return Response(serializer_companies.data)
+    
 class All_companies(User_permissions):
     def get(self, request):
         all_companies = Company.objects.all()
