@@ -78,12 +78,17 @@ export default function AddSprint() {
                           onChange={(date) => setEndDate(date)}
                         />
                       </div>
-                      <div className="relative">
+                      <div className="relative flex justify-evenly">
                         <button 
-                          className="bg-pink-900 shadow shadow-gray-800 text-white rounded-md px-2 py-1 hover:bg-pink-500" 
+                          className="bg-pink-900 shadow shadow-gray-800 text-white rounded-md px-10 py-1 hover:bg-pink-500" 
                           type="submit">
                             Submit
-                          </button>
+                        </button>
+                        <button 
+                          className="bg-pink-900 shadow shadow-gray-800 text-white rounded-md px-10 py-1 hover:bg-pink-500" 
+                          onClick={() => navigate("/company")}>
+                            Cancel
+                        </button>
                       </div>
                     </div>
                 </div>

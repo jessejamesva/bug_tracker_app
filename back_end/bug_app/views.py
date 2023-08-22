@@ -66,8 +66,8 @@ class All_sprints(User_permissions):
         return Response(a_sprint.data, status=HTTP_201_CREATED)
     
 class A_sprint(User_permissions):
-    def get(self, request, id, proj_id, sprint_id):
-        a_sprint = Sprint.objects.filter(parent_project__exact = proj_id, id__exact = sprint_id)
+    def get(self, request, id, sprint_id): # removed proj_id for sprint testing
+        a_sprint = Sprint.objects.filter(id__exact = sprint_id)
         if request.user.company.id == id:
             serialized_sprint = SprintSerializer(a_sprint, many = True)
             return Response(serialized_sprint.data)

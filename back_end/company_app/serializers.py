@@ -17,3 +17,8 @@ class CompanySerializer(ModelSerializer):
     class Meta:
         model = Company
         fields = ["id", "name", "projects", "employees"]
+
+class CompanyOnlySerializer(ModelSerializer):
+    class Meta:
+        model = Company
+        fields = ["id", "name"]
