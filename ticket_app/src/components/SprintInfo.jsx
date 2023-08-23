@@ -6,7 +6,7 @@ import DragMove from "./DragMove";
 
 // Display board for all sprint tickets. Uses "isSprintLoaded" as boolean to display component. The bool value is created on the Company page and set in the NavBAr with the selection of the "Sprint" element. The getUnassinged function parses through the tickets and filters by status.
 export default function SprintInfo() {
-  const { sprint, isSprintLoaded, company } = useOutletContext();
+  const { sprint, isSprintLoaded, company, isSprintChanged } = useOutletContext();
   const [unassignedTickets, setUnassignedTickets] = useState([]);
   const [inProgressTickets, setInprogressTickets] = useState([]);
   const [testingTickets, setTestingTickets] = useState([]);
@@ -67,12 +67,13 @@ export default function SprintInfo() {
 
       {/* Start of sprint information board */}
       
-      <div className="mt-4 w-full h-full flex justify-around">
+      <div className="mt-4 w-full flex justify-around">
         <div className="basis-1/4 text-center">
           <TicketGroup
             heading="Back Log"
             ticketList={unassignedTickets}
             companyId={company.id}
+            isSprintChanged={isSprintChanged}
             color="lightsalmon"
           />
         </div>
@@ -81,6 +82,7 @@ export default function SprintInfo() {
             heading="In Progress"
             ticketList={inProgressTickets}
             companyId={company.id}
+            isSprintChanged={isSprintChanged}
             color="lightpink"
           />
         </div>
@@ -89,6 +91,7 @@ export default function SprintInfo() {
             heading="Testing"
             ticketList={testingTickets}
             companyId={company.id}
+            isSprintChanged={isSprintChanged}
             color="skyblue"
           />
         </div>
@@ -97,6 +100,7 @@ export default function SprintInfo() {
             heading="Verified"
             ticketList={verifiedTickets}
             companyId={company.id}
+            isSprintChanged={isSprintChanged}
             color="cadetblue"
           />
         </div>
@@ -105,47 +109,10 @@ export default function SprintInfo() {
             heading="Approved"
             ticketList={approvedTickets}
             companyId={company.id}
+            isSprintChanged={isSprintChanged}
             color="yellowgreen"
           />
         </div>
-        {/* <div className="basis-1/4 text-center bg-yellow-400">
-          <h2 className="text-2xl underline  ">Unassinged</h2>
-          {unassignedTickets.map((ticket) => (
-            // <Ticket key={ticket.id} ticket={ticket}/>
-            <DragMove key={ticket.id} onDragMove={handleDragMove}>
-              <div
-                style={{
-                  transform: `translateX(${translate.x}px) translateY(${translate.y}px)`,
-                }}
-              >
-                <Ticket
-                  key={ticket.id}
-                  ticket={ticket}
-                  companyId={company.id}
-                />
-              </div>
-            </DragMove>
-          ))}
-        </div> */}
-        {/* <div className="basis-1/4 text-center bg-pink-400">
-          <h2 className="text-2xl underline">In Progress</h2>
-          {inProgressTickets.map((ticket) => (
-            <Ticket
-            key={ticket.id}
-            ticket={ticket}
-            companyId={company.id}
-          />
-          ))}
-        </div>
-        <div className="text-2xl underline basis-1/4 text-center bg-indigo-400">
-          Testing
-        </div>
-        <div className="text-2xl underline basis-1/4 text-center bg-blue-300">
-          Verified
-        </div> */}
-        {/* <div className="text-2xl underline basis-1/4 text-center bg-green-400">
-          Approved
-        </div> */}
       </div>
     </div>
   );

@@ -1,4 +1,9 @@
-import { useLoaderData, useNavigate, useParams } from "react-router-dom";
+import {
+  useLoaderData,
+  useNavigate,
+  useParams,
+  useOutletContext,
+} from "react-router-dom";
 import { api } from "../utilities";
 
 // ticket loader runs API call before TicketInfo
@@ -13,6 +18,7 @@ export const ticketLoader = async ({ params }) => {
 export default function TicketInfo({ params }) {
   const ticket = useLoaderData();
   const { id } = useParams();
+  const { isSprintChanged } = useOutletContext();
   const navigate = useNavigate();
 
   const handleDelete = async () => {
@@ -21,6 +27,7 @@ export default function TicketInfo({ params }) {
     if (response.status === 204) {
       alert("Ticket Deleted");
     }
+    isSprintChanged();
     navigate("/company");
   };
 

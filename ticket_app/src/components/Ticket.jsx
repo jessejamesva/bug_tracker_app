@@ -1,12 +1,13 @@
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { api } from "../utilities";
 import { FaRectangleList, FaTrashCan } from "react-icons/fa6";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 
-export default function Ticket(props) {
+function Ticket(props) {
   const { feature, notes, id } = props.ticket;
-  const { color } = props;
+  const { color, isSprintChanged } = props;
 
   const navigate = useNavigate();
 
@@ -18,14 +19,15 @@ export default function Ticket(props) {
     if (response.status === 204) {
       alert("Ticket Deleted");
     }
+    isSprintChanged();
     navigate("/company");
   };
 
   return (
-    <div 
+    <div
       className="border border-1 border-white shadow-lg shadow-black rounded-md m-5 p-3"
       style={{ backgroundColor: color }}
-      >
+    >
       <h2 className="uppercase">{feature}</h2>
       <h2 className="text-xs capitalize">{notes}</h2>
       <h2 className="text-xs">id: {id}</h2>
@@ -37,7 +39,7 @@ export default function Ticket(props) {
           }}
         />
         <Popup
-          trigger={<FaTrashCan className="cursor-pointer text-lg"/>}
+          trigger={<FaTrashCan className="cursor-pointer text-lg" />}
           position="center center"
           modal
           closeOnDocumentClick
@@ -75,3 +77,5 @@ export default function Ticket(props) {
     </div>
   );
 }
+
+export default React.memo(Ticket);

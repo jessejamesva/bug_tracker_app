@@ -9,6 +9,8 @@ import AddTicket from "./components/AddTicket"
 import SprintInfo from "./components/SprintInfo"
 import TicketInfo, { ticketLoader } from "./components/TicketInfo"
 import UpdateTicket, { ticketLoader2 } from "./components/UpdateTicket"
+import { element } from "prop-types"
+import SprintTest from "./components/SprintTest"
 
 export const router = createBrowserRouter([
     {
@@ -52,6 +54,10 @@ export const router = createBrowserRouter([
                         path: ":id/ticket/:ticket_id/update",
                         loader: ticketLoader2,
                         element: <UpdateTicket />
+                    },
+                    {
+                        path: "test",
+                        element: <SprintTest />
                     }
                   
                 ]

@@ -16,7 +16,7 @@ export default function UpdateTicket() {
   const [note, setNote] = useState(ticket.notes);
   const [employee, setEmployee] = useState(`${ticket.assigned_to}`);
   const [status, setStatus] = useState(ticket.status);
-  const { company } = useOutletContext();
+  const { company, isSprintChanged } = useOutletContext();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -31,7 +31,7 @@ export default function UpdateTicket() {
         status: status,
       }
     );
-    console.log(response.data);
+    isSprintChanged()
     navigate("/company");
   };
 
