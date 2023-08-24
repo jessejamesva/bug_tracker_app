@@ -107,7 +107,7 @@ export default function UpdateTicket() {
                     className="w-4/6 text-black mx-4 rounded pl-1"
                   >
                     <option key={1} value={"na"}>
-                      Not Assigned
+                      Back Log
                     </option>
                     <option key={2} value={"ip"}>
                       In Progress

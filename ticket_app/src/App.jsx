@@ -50,7 +50,7 @@ export default function App() {
 
   return (
     <div className="App">
-      <div className="min-h-screen bg-gray-100 flex flex-col justify-center dark:bg-gray-700">
+      <div className="min-h-screen bg-gray-100 flex flex-col justify-center dark:bg-gray-400">
         <Outlet
           context={{ user, setUser, logOut, whoAmI, companyId, setCompanyID }}
         />

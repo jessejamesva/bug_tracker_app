@@ -1,5 +1,6 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { roleList } from "../utilities";
 import {
   BsArrowLeftShort,
   BsChevronDown,
@@ -85,7 +86,7 @@ export default function NavBar(props) {
         </div>
         {selectedProject && (
           <h2 className={`text-white ${!open && "hidden"}`}>
-            PM - {selectedProject.project_manager.name}
+            Project Manager - {selectedProject.project_manager.name}
           </h2>
         )}
         <ul className="pt-2">
@@ -148,11 +149,12 @@ export default function NavBar(props) {
             {company.employees && employeeOpen && open && (
               <ul>
                 {company.employees.map((employee) => (
+                  // const role = roleList.find((role) => role.id === employee.role)
                   <li
                     key={employee.id}
                     className="text-gray-300 text-sm flex items-center gap-x-4 cursor-pointer p-2 px-5 hover:bg-light-white rounded-md"
                   >
-                    {`${employee.name} - ${employee.role}`}
+                    {`${employee.name} - ${roleList.find((role) => role.id === employee.role).role}`}
                   </li>
                 ))}
               </ul>
@@ -195,11 +197,11 @@ export default function NavBar(props) {
             </>
           )}
 
-          {/* ******  Everything Else ****** */}
+          {/* ******  Everything Else (from Menus Obj) ****** */}
           {Menus.map((menu, index) => (
-            <>
+            <React.Fragment key={index}>
               <li
-                key={index}
+                // key={index}
                 className={`text-gray-300 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-light-white rounded-md ${
                   menu.spacing ? "mt-9" : "mt-2"
                 }`}
@@ -209,7 +211,7 @@ export default function NavBar(props) {
                   {menu.icon ? menu.icon : <RiDashboardFill />}
                 </span>
                 <span
-                  key={index}
+                  // key={index}
                   className={`text-base font-medium flex-1 duration-200 ${
                     !open && "hidden"
                   }`}
@@ -225,9 +227,9 @@ export default function NavBar(props) {
               </li>
               {menu.submenu && submenuOpen && open && (
                 <ul>
-                  {menu.submenuItems.map((submenuItem, index) => (
+                  {menu.submenuItems.map((submenuItem, subIndex) => (
                     <li
-                      key={index}
+                      key={subIndex}
                       className="text-gray-300 text-sm flex items-center gap-x-4 cursor-pointer p-2 px-5 hover:bg-light-white rounded-md"
                     >
                       {submenuItem.name}
@@ -235,7 +237,7 @@ export default function NavBar(props) {
                   ))}
                 </ul>
               )}
-            </>
+            </React.Fragment>
           ))}
         </ul>
       </div>
