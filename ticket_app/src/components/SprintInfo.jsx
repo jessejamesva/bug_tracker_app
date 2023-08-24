@@ -14,17 +14,17 @@ export default function SprintInfo() {
   const [approvedTickets, setApprovedTickets] = useState([])
   // const navigate = useNavigate();
 
-  const [translate, setTranslate] = useState({
-    x: 0,
-    y: 0,
-  });
+  // const [translate, setTranslate] = useState({
+  //   x: 0,
+  //   y: 0,
+  // });
 
-  const handleDragMove = (e) => {
-    setTranslate({
-      x: translate.x + e.movementX,
-      y: translate.y + e.movementY,
-    });
-  };
+  // const handleDragMove = (e) => {
+  //   setTranslate({
+  //     x: translate.x + e.movementX,
+  //     y: translate.y + e.movementY,
+  //   });
+  // };
 
   function getUnassigned() {
     isSprintLoaded &&

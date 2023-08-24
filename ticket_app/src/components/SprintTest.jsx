@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useOutletContext, useNavigate } from "react-router-dom";
 import { DragDropContext, Draggable, Droppable,  } from "react-beautiful-dnd";
 import { api } from "../utilities";
 import Ticket from "./Ticket";
+import SprintHeading from "./SprintHeading";
 
 
 
@@ -50,26 +51,31 @@ export default function SprintTest() {
         {
           id: "na",
           title: "Back Log",
+          color: "lightsalmon",
           taskIds: unassignedTickets.map((ticket) => ticket.id),
         },
         {
           id: "ip",
           title: "In Progress",
+          color: "lightpink",
           taskIds: inProgressTickets.map((ticket) => ticket.id),
         },
         {
           id: "te",
           title: "Testing",
+          color: "skyblue",
           taskIds: testingTickets.map((ticket) => ticket.id),
         },
         {
           id: "qa",
           title: "Verified",
+          color: "cadetblue",
           taskIds: verifiedTickets.map((ticket) => ticket.id),
         },
         {
           id: "ok",
           title: "Approved",
+          color: "yellowgreen",
           taskIds: approvedTickets.map((ticket) => ticket.id),
         },
       ]);
@@ -137,11 +143,15 @@ export default function SprintTest() {
     console.log("after move update", columns)
   }, [columns])
   
-
+  if (!isSprintLoaded) {
+    return null
+  }
+  
   return (
-    <div className="SprintTest">
+    <div className="SprintTest w-full">
+      <SprintHeading sprint={sprint} isSprintLoaded={isSprintLoaded} />
       <DragDropContext onDragEnd={onDragEnd}>
-        <div style={{ display: "flex" }}>
+        <div style={{ display: "flex", justifyContent: "space-around" }}>
           {Object.values(columns).map((column) => (
             <Droppable key={column.id} droppableId={column.id}>
               {(provided) => (
@@ -149,16 +159,23 @@ export default function SprintTest() {
                   ref={provided.innerRef}
                   {...provided.droppableProps}
                   style={{
-                    border: "1px solid gray",
+                    flexBasis: "20%",
                     margin: "8px",
-                    padding: "8px",
-                    width: "200px",
+                    marginTop: "15px",
+                    // padding: "1px",
+                    minHeight: "300px",
+                    // width: "200px",
                   }}
                 >
-                  <h2>{column.title}</h2>
+                  <h2 
+                    className="text-center text-2xl border-b-[3px] pb-2 text-black drop-shadow-lg"
+                    style={{ borderColor: `${column.color}` }}
+                    >
+                    {column.title}
+                  </h2>
                   {column.taskIds.map((taskId, index) => {
                     let task = sprint.tickets.find((ticket) => ticket.id === taskId);
-                    if (!task) {
+                    if (!task && movedTicket) {
                       task = movedTicket
                     }
 
@@ -174,17 +191,18 @@ export default function SprintTest() {
                             {...provided.dragHandleProps}
                             ref={provided.innerRef}
                             isdragging={snapshot.isDragging.toString()}
-                            style={{
-                                
+                            style={{                                
+                                textAlign: "center",
                                 ...provided.draggableProps.style,
                             }}
                             >
                             <Ticket
+                              // ref={provided.innerRef}
                               key={task.id}
                               ticket={task}
-                              companyId={1}
+                              companyId={company.id}
                               isSprintChanged={isSprintChanged}
-                              color="green"
+                              color={`${column.color}`}
                             /> 
                             </div>
                         )}

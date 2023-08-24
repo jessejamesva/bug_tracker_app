@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from "react";
-import { Link, useNavigate, useOutletContext } from "react-router-dom";
-import { api } from "../utilities";
+import { Link, useNavigate } from "react-router-dom";
+import { api, roleList } from "../utilities";
 
 export default function RegisterPage() {
   const [userName, setUserName] = useState("");
@@ -10,15 +10,7 @@ export default function RegisterPage() {
   const [role, setRole] = useState("");
   const [companyList, setCompanyList] = useState([]);
   const [selectedCompany, setSelectedCompany] = useState(0);
-  const { setUser } = useOutletContext();
   const navigate = useNavigate();
-  const roleList = [
-    { id: "pm", role: "Project Manager" },
-    { id: "se", role: "Software Engineer" },
-    { id: "ta", role: "Test Analyst" },
-    { id: "qa", role: "QA Specialist" },
-    { id: "ro", role: "Read Only" },
-  ];
 
   const [userNameError, setUserNameError] = useState("");
   const [passwordError, setPasswordError] = useState("");
@@ -31,21 +23,6 @@ export default function RegisterPage() {
     let response = await api.get("companies/list/");
     setCompanyList(response.data);
   };
-
-  // const login = async (e) => {
-  //   e.preventDefault();
-  //   let response = await api.post("users/login/", {
-  //     email: userName,
-  //     password: password,
-  //   });
-  //   let token = response.data.token;
-  //   let user = response.data.client;
-  //   localStorage.setItem("token", token);
-  //   api.defaults.headers.common["Authorization"] = `Token ${token}`;
-  //   setUser(user);
-  //   console.log(user);
-  //   navigate("/company");
-  // };
 
   const validateForm = useMemo(() => {
     let isValid = true;

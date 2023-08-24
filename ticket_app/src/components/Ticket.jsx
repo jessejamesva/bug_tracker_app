@@ -7,6 +7,11 @@ import "reactjs-popup/dist/index.css";
 
 function Ticket(props) {
   const { feature, notes, id } = props.ticket;
+  
+  if (!feature) {
+    return null
+  }
+  
   const { color, isSprintChanged } = props;
 
   const navigate = useNavigate();
@@ -25,8 +30,8 @@ function Ticket(props) {
 
   return (
     <div
-      className="border border-1 border-white shadow-lg shadow-black rounded-md m-5 p-3"
-      style={{ backgroundColor: color }}
+      className="border-[3px] border-white shadow-lg shadow-gray-700 rounded-md m-5 p-3"
+      style={{ backgroundColor: "white", borderColor: `${color}` }}
     >
       <h2 className="uppercase">{feature}</h2>
       <h2 className="text-xs capitalize">{notes}</h2>
