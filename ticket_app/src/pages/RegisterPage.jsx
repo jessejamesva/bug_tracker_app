@@ -32,20 +32,20 @@ export default function RegisterPage() {
     setCompanyList(response.data);
   };
 
-  const login = async (e) => {
-    e.preventDefault();
-    let response = await api.post("users/login/", {
-      email: userName,
-      password: password,
-    });
-    let token = response.data.token;
-    let user = response.data.client;
-    localStorage.setItem("token", token);
-    api.defaults.headers.common["Authorization"] = `Token ${token}`;
-    setUser(user);
-    console.log(user);
-    navigate("/company");
-  };
+  // const login = async (e) => {
+  //   e.preventDefault();
+  //   let response = await api.post("users/login/", {
+  //     email: userName,
+  //     password: password,
+  //   });
+  //   let token = response.data.token;
+  //   let user = response.data.client;
+  //   localStorage.setItem("token", token);
+  //   api.defaults.headers.common["Authorization"] = `Token ${token}`;
+  //   setUser(user);
+  //   console.log(user);
+  //   navigate("/company");
+  // };
 
   const validateForm = useMemo(() => {
     let isValid = true;
@@ -103,7 +103,16 @@ export default function RegisterPage() {
 
   const register = async (e) => {
     e.preventDefault();
-    console.log("testing register");
+    let response = await api.post("users/signup/", {
+          email: userName,
+          password: password,
+          name: fullName,
+          role: role,
+          company: selectedCompany,
+        });
+    console.log(response.data);
+    alert("User Created")
+    navigate("/")
   };
 
   useEffect(() => {
@@ -119,7 +128,7 @@ export default function RegisterPage() {
           <div className="max-w-md mx-auto">
             <div>
               <h1 className="text-2xl font-semibold">
-                {"Welcome to Jesse's Jira"}
+                {"Jesse's Jira - Registration"}
               </h1>
             </div>
             <form onSubmit={register}>

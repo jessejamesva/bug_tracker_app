@@ -1,7 +1,7 @@
 import Ticket from "./Ticket"
 
 export default function TicketGroup(props) {
-  const { ticketList, heading, companyId, color } = props
+  const { ticketList, heading, companyId, color, isSprintChanged } = props
   return (
     <>
       <h2 
@@ -13,6 +13,7 @@ export default function TicketGroup(props) {
           key={ticket.id}
           ticket={ticket}
           companyId={companyId}
+          isSprintChanged={isSprintChanged}
           color={color}
         />          
       ))}  

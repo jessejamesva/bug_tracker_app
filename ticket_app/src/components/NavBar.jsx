@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { api } from "../utilities";
 import {
   BsArrowLeftShort,
   BsChevronDown,
@@ -20,7 +19,7 @@ import { TbLayoutGridAdd, TbPlaylistAdd } from "react-icons/tb";
 
 
 export default function NavBar(props) {
-  const { logOut, company, sprint, setSprint, setIsSprintLoaded } = props;
+  const { logOut, company, setSprintID } = props;
   const [open, setOpen] = useState(true);
   const [projectOpen, setProjectOpen] = useState(false);
   const [employeeOpen, setEmployeeOpen] = useState(false);
@@ -29,27 +28,8 @@ export default function NavBar(props) {
   const [selectedProject, setSelectedProject] = useState(null);
   const navigate = useNavigate();
 
+  // List for basic menus, all the extended lists needed to be pulled out
   const Menus = [
-    // {
-    //     title: "Sprints",
-    //     spacing: true,
-    //     icon: <AiOutlineBarChart />,
-    //     submenu: true,
-    //     submenuItems: selectedProject.sprints
-    // },
-    // {
-    //     title: "Employees",
-    //     icon: <BsPeopleFill />,
-    //     submenu: true,
-    //     submenuItems: company.employees
-    // },
-    // {
-    //     title: "Projects",
-    //     spacing: true,
-    //     icon: <BsReverseLayoutTextSidebarReverse />,
-    //     submenu: true,
-    //     submenuItems: company.projects
-    // },
     {
       title: "Sprint Board",
       spacing: true,
@@ -65,24 +45,15 @@ export default function NavBar(props) {
       icon: <TbLayoutGridAdd />,
       onClick: () => navigate("add_ticket"),
     },
-    { title: "Inbox", icon: <AiOutlineMail /> },
+    { 
+      title: "Inbox", 
+      icon: <AiOutlineMail />,
+      onClick: () => navigate("test") 
+    },
     { title: "Profile", spacing: true, icon: <BsPerson /> },
     { title: "Setting", icon: <AiOutlineSetting /> },
     { title: "Logout", icon: <AiOutlineLogout />, onClick: logOut },
   ];
-
-  const handleSprintClick = async(sprint_id) => {
-    try {
-      const response = await api.get(`companies/${company.id}/sprints/${sprint_id}`)
-      const sprintData = response.data[0]
-      setSprint(sprintData)
-      console.log(sprint)
-    } catch (error) {
-      console.error('Error getting sprint', error)
-    }
-   
-  setIsSprintLoaded(true)
-  }
 
   return (
     <div className="flex">
@@ -214,11 +185,7 @@ export default function NavBar(props) {
                     <li
                       key={sprint.id}
                       className="text-gray-300 text-sm flex items-center gap-x-4 cursor-pointer p-2 px-5 hover:bg-light-white rounded-md"
-                      onClick={() => handleSprintClick(sprint.id)}
-                      // onClick={() => {
-                      //   setSprint(sprint);
-                      //   setIsSprintLoaded(true);
-                      // }}
+                      onClick={() => setSprintID(sprint.id)}
                     >
                       {sprint.name}
                     </li>
