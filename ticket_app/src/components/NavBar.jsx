@@ -16,7 +16,7 @@ import {
   AiOutlineSetting,
 } from "react-icons/ai";
 import { RiDashboardFill } from "react-icons/ri";
-import { TbLayoutGridAdd, TbPlaylistAdd } from "react-icons/tb";
+import { TbLayoutGridAdd, TbPlaylistAdd, TbProgressHelp } from "react-icons/tb";
 
 
 export default function NavBar(props) {
@@ -49,10 +49,11 @@ export default function NavBar(props) {
     { 
       title: "Inbox", 
       icon: <AiOutlineMail />,
-      onClick: () => navigate("test") 
+      onClick: () => navigate("") 
     },
-    { title: "Profile", spacing: true, icon: <BsPerson /> },
-    { title: "Setting", icon: <AiOutlineSetting /> },
+    { title: "Profile", spacing: true, icon: <BsPerson />, disabled: true },
+    { title: "Setting", icon: <AiOutlineSetting />, disabled: true },
+    { title: "Motivation?", icon: <TbProgressHelp />, onClick: () => navigate("quote")},  
     { title: "Logout", icon: <AiOutlineLogout />, onClick: logOut },
   ];
 
@@ -202,8 +203,10 @@ export default function NavBar(props) {
             <React.Fragment key={index}>
               <li
                 // key={index}
-                className={`text-gray-300 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-light-white rounded-md ${
+                className={`text-gray-300 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-light-white rounded-md disabled:opacity-25 ${
                   menu.spacing ? "mt-9" : "mt-2"
+                } ${
+                  menu.disabled ? "opacity-50" : null
                 }`}
                 onClick={menu.onClick}
               >

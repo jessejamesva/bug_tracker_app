@@ -10,6 +10,7 @@ import SprintInfo from "./components/SprintInfo"
 import TicketInfo, { ticketLoader } from "./components/TicketInfo"
 import UpdateTicket, { ticketLoader2 } from "./components/UpdateTicket"
 import SprintTest from "./components/SprintTest"
+import Quote, {quoteLoader} from "./components/Quote"
 
 export const router = createBrowserRouter([
     {
@@ -57,6 +58,11 @@ export const router = createBrowserRouter([
                     {
                         path: "test",
                         element: <SprintTest />
+                    },
+                    {
+                        path: "quote",
+                        loader: quoteLoader,
+                        element: <Quote />
                     }
                   
                 ]

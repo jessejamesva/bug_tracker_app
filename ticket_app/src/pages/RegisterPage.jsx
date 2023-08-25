@@ -227,7 +227,7 @@ export default function RegisterPage() {
                       type="submit"
                       disabled={!validateForm}
                     >
-                      Submit
+                      Register
                     </button>
                     <Link to="/" className="text-white text-right text-xs mx-7">
                       Already Signed Up?
