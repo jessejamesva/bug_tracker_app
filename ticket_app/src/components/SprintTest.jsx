@@ -80,7 +80,7 @@ export default function SprintTest() {
         },
       ]);
     }
-  }, [sprint, isSprintLoaded]);
+  }, [sprint, isSprintLoaded, isSprintChanged]);
 
   const updateTicket = async (id, destination) => {
     const ticket = sprint.tickets.find((ticket) => ticket.id === id)
@@ -115,27 +115,27 @@ export default function SprintTest() {
       navigate("/company/test")
 
 
-      // Reorder task IDs within the source column
-      const sourceColumn = columns.find(column => column.id === source.droppableId);
-      const updatedSourceTaskIds = Array.from(sourceColumn.taskIds);
-      updatedSourceTaskIds.splice(source.index, 1);
+      // // Reorder task IDs within the source column
+      // const sourceColumn = columns.find(column => column.id === source.droppableId);
+      // const updatedSourceTaskIds = Array.from(sourceColumn.taskIds);
+      // updatedSourceTaskIds.splice(source.index, 1);
       
-      // Insert the dragged task ID at the destination index within the destination column
-      const destinationColumn = columns.find(column => column.id === destination.droppableId);
-      const updatedDestinationTaskIds = Array.from(destinationColumn.taskIds);
-      updatedDestinationTaskIds.splice(destination.index, 0, result.draggableId);
+      // // Insert the dragged task ID at the destination index within the destination column
+      // const destinationColumn = columns.find(column => column.id === destination.droppableId);
+      // const updatedDestinationTaskIds = Array.from(destinationColumn.taskIds);
+      // updatedDestinationTaskIds.splice(destination.index, 0, result.draggableId);
       
-      // Update columns' taskIds
-      const updatedColumns = columns.map((column) => {
-        if (column.id === source.droppableId) {
-          return { ...column, taskIds: updatedSourceTaskIds };
-        }
-        if (column.id === destination.droppableId) {
-          return { ...column, taskIds: updatedDestinationTaskIds };
-        }
-        return column;
-        });
-      setColumns(updatedColumns);
+      // // Update columns' taskIds
+      // const updatedColumns = columns.map((column) => {
+      //   if (column.id === source.droppableId) {
+      //     return { ...column, taskIds: updatedSourceTaskIds };
+      //   }
+      //   if (column.id === destination.droppableId) {
+      //     return { ...column, taskIds: updatedDestinationTaskIds };
+      //   }
+      //   return column;
+      //   });
+      // setColumns(updatedColumns);
     }    
   };  
 
@@ -143,7 +143,7 @@ export default function SprintTest() {
     console.log("after move update", columns)
   }, [columns])
   
-  if (!isSprintLoaded) {
+  if (isSprintLoaded) {
     return null
   }
   

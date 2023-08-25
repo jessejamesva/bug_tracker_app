@@ -77,7 +77,7 @@ export default function LoginPage() {
                         <button 
                           className="bg-pink-900 shadow shadow-gray-800 text-white rounded-md px-2 py-1 hover:bg-pink-500" 
                           type="submit">
-                            Submit
+                            Log In
                           </button>
                         <Link to="register" className="text-white text-right text-xs mx-7">Register?</Link>
                       </div>

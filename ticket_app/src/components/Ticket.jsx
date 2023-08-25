@@ -8,9 +8,9 @@ import "reactjs-popup/dist/index.css";
 function Ticket(props) {
   const { feature, notes, id } = props.ticket;
   
-  if (!feature) {
-    return null
-  }
+  // if (!feature) {
+  //   return null
+  // }
   
   const { color, isSprintChanged } = props;
 

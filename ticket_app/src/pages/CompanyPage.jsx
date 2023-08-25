@@ -52,9 +52,10 @@ export default function CompanyPage() {
 
   // sprintId is set in the NavBar when users select sprint, sprintChange is called when adding, updateing, or deleting sprints. 
   useEffect(() => {
-    if (sprintId) [
+    if (sprintId) {
+      // setIsSprintLoaded(false)
       getSprint(sprintId)
-    ] 
+    }
   }, [sprintId, sprintChange])
   
   
